@@ -1,2 +1,43 @@
-/*hello world this is my project*/
-/*another line*/
+.logo{
+    border-radius: 50%;
+    width: 50px;
+    margin-right: 10px;
+    float: left;
+}
+.aa{
+    text-decoration: none;
+    color: black;
+    font-size: 25px;
+    font-weight: 800;
+    float: right;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+.bname{
+    margin-right: 0px;
+}
+.info{
+    text-align: center;
+    padding-top: 100px;
+}.create{
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: rgb(78, 215, 215);
+    font-weight: 600;
+    border: none;
+    border-radius: 5px;
+    margin-left: 45%;
+}
+#button{
+    text-align: center;
+}
+.world{
+    height: 500px;
+    text-align: right;
+}
+.baloons{
+    height: 500px;
+    margin-right: 300px;
+}
