@@ -13,7 +13,6 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.get("/", (req, res) => {
     res.render("index.ejs");
 });
-/*This comment is to fill this line of code*/
 app.post("/signin", (req, res) => {
     res.render("partials/signin.ejs");
 })
@@ -23,3 +22,6 @@ app.post("/submit", (req, res) => {
 app.listen(port,()=>{
     console.log(`Listening on port ${port}`);
 })
+app.get("/login", (req, res) => {
+    res.render("partials/login.ejs");
+});

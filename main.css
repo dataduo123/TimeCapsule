@@ -26,7 +26,7 @@
     padding-right: 10px;
     background-color: rgb(78, 215, 215);
     font-weight: 600;
-    border: none;
+    border: 5px;
     border-radius: 5px;
     margin-left: 45%;
 }
@@ -34,9 +34,6 @@
     height: 500px;
     text-align: right;
 }
-/*hfjdhfjdh
-kdjfkdjfkdj
-dkfjdkjfkjdkjkncvmncmn fjdmv mc mfd dkfjdkjf*/
 #button{
     text-align: center;
 }
