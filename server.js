@@ -1,3 +1,10 @@
+import express from "express";
+import bodyParser from "body-parser";
+import axios from "axios";
+
+const app = express();
+const port = 4000;
+
 app.get("/card", (req, res) => {
     res.render("card.ejs", { heading: "New Post", submit: "Create Post" });
   });
@@ -51,3 +58,8 @@ app.get("/card", (req, res) => {
       res.status(500).json({ message: "Error deleting post" });
     }
   });
+
+  app.listen(port, () => {
+    console.log(`Backend server is running on http://localhost:${port}`);
+  });
+  
