@@ -34,10 +34,10 @@
     height: 500px;
     text-align: right;
 }
+#button{
+    text-align: center;
+}
 .baloons{
     height: 500px;
     margin-right: 300px;
-}
-#button{
-    text-align: center;
 }
