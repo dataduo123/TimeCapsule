@@ -5,16 +5,10 @@
 }
 body{
     background-color: rgb(240, 242, 245);
-}
-.tc-page .text{
-    margin-bottom: 50px;
-}
-.tc-page .text h2{
-    color: rgb(14, 9, 9);
-    font-size: 4rem;
-}
-.tc-page .text p{
-    font-size: 1.5rem;
+    /* background-image: url();
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat; */
 }
 .container{
     height: 100vh;
@@ -26,9 +20,22 @@ body{
     max-width: 1000px;
     width: 100%;
     display: flex;
+    gap: 100px;
     align-items: center;
     justify-content: space-between;
 }
+.tc-page .text{
+    margin-bottom: 50px;
+}
+.tc-page .text h2{
+    color: rgb(14, 9, 9);
+    font-size: 4rem;
+}
+.tc-page .text p{
+    font-size: 1.5rem;
+}
+
+
 form{
     display: flex;
     flex-direction: column;
@@ -37,6 +44,7 @@ form{
     background-color: #fff;
     padding: 20px;
     border-radius: 10px;
+    opacity: 0.9;
 }
 form input{
     width: 100%;
@@ -96,20 +104,43 @@ hr{
     background:rgb(14, 9, 9);
     color: white;
 }
+.google-signin-btn {
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 30px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: poppins;
+    font-size: 16px;
+    color: #555;
+    text-decoration: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.2s;
+}
+.google-signin-btn:hover {
+    background-color: #f8f8f8;
+}
+.google-signin-btn img {
+    height: 24px;
+    margin-right: 10px;
+}
 @media (max-width:900px) {
-    .fb-page{
+    .tc-page{
         flex-direction: column;
         text-align: center;
     }
 }
 @media (max-width:450px) {
-    .fb-page .text h2{
+    .tc-page .text h2{
         font-size: 3rem;
     }
-    .fb-page .text p{
+    .tc-page .text p{
         font-size: 1rem;
     }
-    .fb-page{
+    .tc-page{
         padding: 35px;
     }
 }

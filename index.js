@@ -15,7 +15,7 @@ const db = new pg.Client({
 db.connect();
 
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static("main.css"));
+app.use(express.static("public"));
 
 app.get("/", (req, res) => {
   res.render("home.ejs");
