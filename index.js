@@ -14,13 +14,12 @@ app.get("/", (req, res) => {
     res.render("index.ejs");
 });
 
-app.listen(port,()=>{
-    console.log(`Listening on port ${port}`);
-})
 app.post("/submit", (req, res) => {
     res.render("partials/createblog.ejs");
 })
 app.post("/signin", (req, res) => {
     res.render("partials/signin.ejs");
 })
-
+app.listen(port,()=>{
+    console.log(`Listening on port ${port}`);
+})

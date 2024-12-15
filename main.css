@@ -30,9 +30,6 @@
     border-radius: 5px;
     margin-left: 45%;
 }
-#button{
-    text-align: center;
-}
 .world{
     height: 500px;
     text-align: right;
@@ -40,4 +37,7 @@
 .baloons{
     height: 500px;
     margin-right: 300px;
+}
+#button{
+    text-align: center;
 }
