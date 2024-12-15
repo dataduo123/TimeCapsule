@@ -67,8 +67,8 @@ textarea {
 
 input:focus,
 textarea:focus {
-  background: linear-gradient(to bottom, rgb(128, 128, 128), #333);
-  color: white;
+  background: linear-gradient(to bottom, rgb(227, 227, 227), #d0d0d0);
+  color: black;
 }
 
 a,

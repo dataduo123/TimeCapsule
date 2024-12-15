@@ -64,10 +64,8 @@ app.post("/login", async (req, res) => {
     console.log(err);
   }
 });
-
-app.get("/posts",(req,res)=>{
-    console.log(posts);
-    res.json(posts);
+app.get("/card", (req, res) => {
+    res.render("card.ejs", { heading: "New Post", submit: "Create Post" });
 });
 
 app.get("/posts/:id", (req, res) => {
@@ -76,30 +74,21 @@ app.get("/posts/:id", (req, res) => {
     if (!post) return res.status(404).json({ message: "Post not found" });
     res.json(post);
 });
-app.post("/posts",(req,res)=>{
-    const newid = lastId += 1;
+app.post("/create",(req,res)=>{
     const newpost = {
-      id: newid,
       title: req.body.title,
       content: req.body.content,
       author: req.body.author,
-      date: new Date(),
+      Remail: req.body.usermail,
+      date: req.body.date,
+      time: req.body.date,
     }
     lastId = newid;
     posts.push(newpost);
     res.status(201);
     res.json(newpost);
 });
-app.patch("/posts/:id", (req, res) => {
-    const post = posts.find((p) => p.id === parseInt(req.params.id));
-    if (!post) return res.status(404).json({ message: "Post not found" });
-  
-    if (req.body.title) post.title = req.body.title;
-    if (req.body.content) post.content = req.body.content;
-    if (req.body.author) post.author = req.body.author;
-  
-    res.json(post);
-});
+
 app.patch("/posts/:id", (req, res) => {
     const post = posts.find((p) => p.id === parseInt(req.params.id));
     if (!post) return res.status(404).json({ message: "Post not found" });
