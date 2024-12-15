@@ -32,13 +32,14 @@ app.get("/signup", (req, res) => {
 app.post("/signup", async (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
+  const name = req.body.name;
   try {
     const checkexist = await db.query("SELECT * FROM users WHERE email = ($1);",[username]);
     if(checkexist.rows.length > 0){
       res.send("Username already exists. Try logging in.");
     } else {
-      const no = await db.query("INSERT INTO users (password, email) VALUES ($1, $2);",[password, username]);
-      res.render("secrets.ejs");
+      const no = await db.query("INSERT INTO users (password, email, username) VALUES ($1, $2, $3);",[password, username, name]);
+      res.render("index.ejs");
     }
   } catch(err) {
     console.log(err);
@@ -57,7 +58,7 @@ app.post("/login", async (req, res) => {
           res.send("Incorrect Password.")
         }
       } else {
-        res.send("Wrong password try again.");
+        res.send("Account does not exist"); 
       }
   } catch(err) {
     console.log(err);

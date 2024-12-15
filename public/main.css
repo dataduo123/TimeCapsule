@@ -10,14 +10,15 @@ body {
 }
 
 .navbar {
-    background: linear-gradient(135deg, #6c63ff, #4a47a3);
+    /* background: linear-gradient(135deg, #6c63ff, #4a47a3); */
+    background: linear-gradient(to bottom, black, #333);
     height: 100px;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom-left-radius: 50px;
-    border-bottom-right-radius: 50px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
     padding: 0 20px;
     color: white;
     position: sticky; 
@@ -47,8 +48,9 @@ body {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background: url('https://via.placeholder.com/50') center/cover no-repeat; /* Placeholder image */
+    background: url('https://clipart-library.com/8300/stopwatch_PNG14.png') center/cover no-repeat; /* Placeholder image */
     border: 2px solid white;
+    background-color: white;
 }
 
 .navbar .calendar {
@@ -65,19 +67,34 @@ body {
     background: white;
     padding: 20px;
     margin: 20px 0;
-    border-radius: 10px; 
+    border-radius: 10px ; 
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.card p{
+    padding: 10px;
 }
 
 .card h2 {
     font-size: 1.5rem;
-    margin-bottom: 10px;
+    margin-bottom: 1px;
+    padding: 10px;
+}
+
+#card1{
+    color: white;
+    background: linear-gradient(to bottom, black, #333);
 }
 
 .button {
-    background: linear-gradient(135deg, #4a47a3, #6c63ff);
+    /* background: linear-gradient(135deg, #4a47a3, #6c63ff); */
+    background: linear-gradient(to bottom, black, #333);
     color: white;
     padding: 10px 20px;
+    margin: 10px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -85,7 +102,8 @@ body {
 }
 
 .button:hover {
-    background: linear-gradient(135deg, #6c63ff, #4a47a3); 
+    /* background: linear-gradient(135deg, #6c63ff, #4a47a3); */
+    background: linear-gradient(to bottom, #686868, rgba(0, 0, 0, 0.637));
 }
 
 .options {
@@ -118,4 +136,15 @@ body {
 .option h3 {
     font-size: 1.2rem;
     margin: 10px 0;
+}
+
+@media (max-width:750px) {
+    .card{
+        flex-direction: column;
+    }
+}
+@media (max-width:450px) {
+    .card{
+        flex-direction: column;
+    }
 }
