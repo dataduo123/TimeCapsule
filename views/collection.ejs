@@ -15,8 +15,7 @@
 
 <body>
   <div class="container">
-    <h1>My Letters</h1>
-    <a id="newPostBtn" href="/new">New Post</a>
+    <h1>My Capsules</h1>
     <ul id="postsList">
       <% posts.forEach(post=> { %>
         <li>
@@ -35,8 +34,8 @@
           <small>By: <%=post.composername%> </small>
           <small>By: <%=post.senddate%> </small>
           <small>By: <%=post.sendtime%> </small>
-          <a class="edit" href="/edit<%= post.id %>">Edit</a>
-          <a class="delete" href="/delete<%= post.id %>">Delete</a>
+          <a class="edit" href="/edit">Edit</a>
+          <a class="delete" href="/delete">Delete</a>
         </li>
         <% }); %>
     </ul>
