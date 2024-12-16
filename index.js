@@ -35,11 +35,12 @@ app.post("/signup", async (req, res) => {
   const name = req.body.name;
   try {
     const checkexist = await db.query("SELECT * FROM users WHERE email = ($1);",[username]);
+    const id = checkexist.rows[0].id;
     if(checkexist.rows.length > 0){
       res.send("Username already exists. Try logging in.");
     } else {
       const no = await db.query("INSERT INTO users (password, email, username) VALUES ($1, $2, $3);",[password, username, name]);
-      res.render("index.ejs", { name: name});
+      res.render("index.ejs", { name: name, id: id});
     }
   } catch(err) {
     console.log(err);
@@ -112,24 +113,18 @@ app.get("/capsules/:id", async (req, res) => {
       const dbresponse = await db.query("SELECT id, title, message, username, receiver_email, date FROM content WHERE username = ($1);",[Username]);
       const response = dbresponse.rows;
       console.log(response);
-      res.render("collection.ejs", { posts: response });
+      res.render("collection.ejs", { posts: response, ID: postId });
     } catch (error) {
       res.status(500).json({ message: "Error fetching posts" });
     }
 });
 
-app.get("/media", async (req, res) => {
-  try {
-    res.render("media.ejs", { heading: "New Post", submit: "Upload Media" });
-  } catch (error) {
-    res.status(500).json({ message: "Error fetching posts" });
-  }
-});
 
-app.post('/delete/:id', async (req, res) => {
+app.post('/delete/:id/:ID', async (req, res) => {
   const postId = req.params.id;
+  const ID = req.params.ID;
   await db.query('DELETE FROM content WHERE id = ($1);', [postId]);
-  res.redirect('/capsules');  // Redirect back to the homepage after deletion
+  res.redirect(`/capsules/${ID}`);  // Redirect back to the homepage after deletion
 });
 
 app.listen(port, () => {
