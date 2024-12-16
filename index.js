@@ -34,8 +34,8 @@ app.post("/signup", async (req, res) => {
   const password = req.body.password;
   const name = req.body.name;
   try {
-    const checkexist = await db.query("SELECT * FROM users WHERE email = ($1);",[username]);
-    const id = checkexist.rows[0].id;
+    const checkexist = await db.query("SELECT id FROM users WHERE email = ($1);",[username]);
+    const id = checkexist.rows[0];
     if(checkexist.rows.length > 0){
       res.send("Username already exists. Try logging in.");
     } else {
