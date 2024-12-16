@@ -48,13 +48,14 @@ app.post("/signup", async (req, res) => {
 app.post("/login", async (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
-  const name = req.body.name;
   try{
     const checkexist = await db.query("SELECT * FROM users WHERE email = ($1);",[username]);
+    const id = checkexist.rows[0].id;
+    console.log(id);
       if(checkexist.rows.length > 0){
         const pass = checkexist.rows[0];  
         if(pass.password == password){
-          res.render("index.ejs", { name: pass.username});
+          res.render("index.ejs", { name: pass.username, id: id});
         } else {
           res.send("Incorrect Password.")
         }
@@ -77,8 +78,13 @@ app.post("/create", async (req,res)=>{
     const date = req.body.senddate;
 
     try {
-        const no = await db.query("INSERT INTO content (title, message, username, receiver_email, date) VALUES ($1, $2, $3, $4, $5);",[title, content, author, Remail, date]);
-        res.render("index.ejs", {name: author});
+        const no = await db.query("INSERT INTO content (title, message, username, receiver_email, date) VALUES ($1, $2, $3, $4, $5) RETURNING *;",[title, content, author, Remail, date]);
+        const uname = author;
+        console.log(uname);
+        const checkexist = await db.query("SELECT * FROM users WHERE username = ($1);",[uname]);
+        const id = checkexist.rows[0].id;
+        console.log(id);
+        res.render("index.ejs", {name: author, id: id});
     } catch(err) {
         console.log(err);
     }
@@ -95,15 +101,36 @@ app.post("/create", async (req,res)=>{
     res.json(post);
 });*/
 
-app.get("/capsules", async (req, res) => {
+
+app.get("/capsules/:id", async (req, res) => {
     try {
-      const dbresponse = await db.query("SELECT title, message, username, receiver_email, date FROM content;");
-      let response = dbresponse.rows;
+      const postId = req.params.id;
+      console.log(postId);
+      const checkexist = await db.query("SELECT username FROM users WHERE id = ($1);",[postId]);
+      const Username = checkexist.rows[0].username;
+      console.log(Username);
+      const dbresponse = await db.query("SELECT id, title, message, username, receiver_email, date FROM content WHERE username = ($1);",[Username]);
+      const response = dbresponse.rows;
+      console.log(response);
       res.render("collection.ejs", { posts: response });
     } catch (error) {
       res.status(500).json({ message: "Error fetching posts" });
     }
-  });
+});
+
+app.get("/media", async (req, res) => {
+  try {
+    res.render("media.ejs", { heading: "New Post", submit: "Upload Media" });
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching posts" });
+  }
+});
+
+app.post('/delete/:id', async (req, res) => {
+  const postId = req.params.id;
+  await db.query('DELETE FROM content WHERE id = ($1);', [postId]);
+  res.redirect('/capsules');  // Redirect back to the homepage after deletion
+});
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
