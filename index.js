@@ -1,4 +1,4 @@
-import express from "express";
+import express, { json } from "express";
 import bodyParser from "body-parser";
 import pg from "pg";
 
@@ -99,12 +99,7 @@ app.get("/capsules", async (req, res) => {
     try {
       const dbresponse = await db.query("SELECT title, message, username, receiver_email, date FROM content;");
       let response = dbresponse.rows;
-      console.log(response);
-      console.log("-----------------------------")
-      const check = json(response);
-      console.log("-----------------------------")
-      console.log(check);
-      res.render("collection.ejs", { posts: response.data });
+      res.render("collection.ejs", { posts: response });
     } catch (error) {
       res.status(500).json({ message: "Error fetching posts" });
     }
